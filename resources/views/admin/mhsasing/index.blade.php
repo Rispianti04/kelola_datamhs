@@ -6,11 +6,11 @@
     {{ session('status') }}
 </div>
 @endif
-<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa</h1>
+<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa Asing</h1>
 <section class="content-header">
     <div class="row">
         <div class="col-sm-6">
-            <h1>Mahasiswa</h1>
+            <h1>Mahasiswa Asing</h1>
         </div>
         {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -104,9 +104,9 @@
         </div>
 
         <!-- /.container-fluid -->
-        @include('admin.mahasiswa.create')
-        @include('admin.mahasiswa.edit')
-        @include('admin.mahasiswa.delete')
+        @include('admin.mhsasing.create')
+        @include('admin.mhsasing.edit')
+        @include('admin.mhsasing.delete')
     </div>
 
 

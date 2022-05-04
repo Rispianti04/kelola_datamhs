@@ -1,37 +1,41 @@
 @extends('adminlte::page')
 @section('content')
 <style>
-.main-sidebar{
-    background: #004584
-}
-.main-header{
-    background: #004584
-}
-.main-sidebar .nav-item{
-    background: #1C364E;
-    margin-bottom: 2px;
-}
-li .main-sidebar .nav-item a .nav-link .active{
-    background: #004584;
-    margin-bottom: 2px;
-}
-.tambah{
-    background: #0078E7;
-    color: #ffffff;
-}
+    .main-sidebar {
+        background: #004584
+    }
 
-.cetak{
-    background: #000000;
-    color: #ffffff;
-}
+    .main-header {
+        background: #004584
+    }
 
-.hapus{
-    background: #E70E00;
-}
+    .main-sidebar .nav-item {
+        background: #1C364E;
+        margin-bottom: 2px;
+    }
 
-.ubah{
-    background: #E7D000;
-}
+    li .main-sidebar .nav-item a .nav-link .active {
+        background: #004584;
+        margin-bottom: 2px;
+    }
+
+    .tambah {
+        background: #0078E7;
+        color: #ffffff;
+    }
+
+    .cetak {
+        background: #000000;
+        color: #ffffff;
+    }
+
+    .hapus {
+        background: #E70E00;
+    }
+
+    .ubah {
+        background: #E7D000;
+    }
 
 </style>
 
@@ -45,8 +49,8 @@ li .main-sidebar .nav-item a .nav-link .active{
     </button>
     @endif
     <table class="table table-bordered datatable">
-        @if ($forms!=null)
-        @foreach ($forms as  $form )
+        @if ($forms ?? ''!=null)
+        @foreach ($forms ?? '' as $form )
         <th>{{$form}}</th>
         @endforeach
         @endif
@@ -56,17 +60,48 @@ li .main-sidebar .nav-item a .nav-link .active{
 @endsection
 @section('js')
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         @yield('script')
-    function tampilTabel(url,data){
 
-    $(".datatable").DataTable({
-    "ajax": url,
-    "columns" : data
-        })
-    }
+        function tampilTabel(url, data) {
 
-});
+            $(".datatable").DataTable({
+                "ajax": url,
+                "columns": data
+            })
+        }
+
+    });
+
+</script>
+<script src=//code.jquery.com/jquery-3.5.1.slim.min.js integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin=anonymous></script>
+<script>
+  $('.addAttr').click(function() {
+  var id = $(this).data('id');   
+  $('#id').val(id); 
+  } );
+ </script>
+<script>
+    $(document).on('click', '.edit', function () {
+        let id = $(this).attr('data-edit');
+        let nama = $(this).attr('data-nama');
+        let npm = $(this).attr('data-npm');
+        let jurusan = $(this).attr('data-jurusan');
+        let tahun_masuk = $(this).attr('data-tahun_masuk');
+        $('#edit').val(id);
+        $('#nama').val(nama);
+        $('#npm').val(npm);
+        $('#jurusan').val(jurusan);
+        $('#tahun_masuk').val(tahun_masuk);
+    });
+
 </script>
 
+
+<script type="text/javascript">
+    @if(count($errors) > 0)
+    $('#Create').modal('show');
+    @endif
+
+</script>
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -35,11 +35,19 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function login(Request $auth)
+    public function login(Request $request)
     {
+        $request->validate([
+            'email'     => 'required|email|exists:users',
+            'password'  => 'required',
 
-        if (Auth::attempt(['email' => $auth->email, 'password' => $auth->password])) {
-            return redirect()->route('home')->with('pesan', 'selamt datang super admin');
+        ]);
+        $credentials = $request->only('email', 'password');
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard')->with('success', 'Success to login')->withInput();
+        } else {
+            return redirect()->route('login')->with('error', 'Password incorrect')->withInput();
         }
     }
     public function __construct()

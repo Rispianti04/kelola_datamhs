@@ -36,6 +36,14 @@ return [
     */
 
     'guards' => [
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'SuperAdmin' => [
+            'driver' => 'session',
+            'provider' => 'SuperAdmins',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -60,6 +68,14 @@ return [
     */
 
     'providers' => [
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+        'SuperAdmins' => [
+            'driver' => 'eloquent',
+            'model' => App\SuperAdmin::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,

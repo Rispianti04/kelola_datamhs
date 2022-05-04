@@ -247,6 +247,11 @@ return [
                     'text' => 'Data Mahasiswa Asli',
                     'url' => 'kelola_mhs_asli',
                 ],
+                [
+                    'text' => 'Jurusan',
+                    'url' => 'jurusan',
+              
+                ]
             ],
         ],
         [
