@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mahasiswa;
+use App\Models\Jurusan;
+use App\Models\Mhsasing;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $mahasiswa = Mahasiswa::count();
+        $mhsasing = Mhsasing::count();
+        $jurusan = Jurusan::count(); 
+        return view('home', compact('mahasiswa','mhsasing','jurusan'));
     }
 }

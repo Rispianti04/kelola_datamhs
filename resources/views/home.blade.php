@@ -12,8 +12,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Mahasiswa</span>
               <span class="info-box-number">
-                10
-                <small>%</small>
+                {{ $mahasiswa }}
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -30,7 +29,8 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Mahasiswa Asing</span>
-              <span class="info-box-number">2,000</span>
+              <span class="info-box-number">{{$mhsasing}}</span>
+              <span class="info-box-number"></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -44,7 +44,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Jurusan</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-number">{{ $jurusan }}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
