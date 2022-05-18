@@ -37,9 +37,18 @@
                         <input type="text" class="form-control" id="" name="tahun_masuk"
                             value="{{$mhs->tahun_masuk}}">
                     </div>
-                
-
-
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin"
+                            class="@error('jenis_kelamin') is-invalid @enderror form-control">
+                            <option value="">Pilih Jurusan</option>
+                            <option value="Laki-Laki" {{$mhs->jenis_kelamin == $mhs->jenis_kelamin ? 'selected' : ''}}>Laki-Laki</option>
+                            <option value="Perempuan {{$mhs->jenis_kelamin == $mhs->jenis_kelamin ? 'selected' : ''}}">Perempuan</option>
+                        </select>
+                        @error('jenis_kelamin')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>

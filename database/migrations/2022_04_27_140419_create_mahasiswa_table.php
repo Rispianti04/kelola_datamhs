@@ -18,10 +18,9 @@ class CreateMahasiswaTable extends Migration
             $table->string('name_mhs');
             $table->string('npm_mhs')->unique();
             $table->foreignId('id_jurusan');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password_mhs');
             $table->string('tahun_masuk');
-            $table->unsignedBigInteger('roles_id');
+            $table->string('kelas');
+            $table->string('jenis_kelamin');
             $table->rememberToken();
             $table->timestamps();
         });

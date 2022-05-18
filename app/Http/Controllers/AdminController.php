@@ -41,24 +41,27 @@ class AdminController extends Controller
     }
     public function store(Request $request)
     {
+       
         $request->validate([
             'name_mhs'   => 'required',
             'npm_mhs'   => 'required|unique:mahasiswa',
             'id_jurusan' => 'required',
             'tahun_masuk' => 'required',
+            'kelas'=> 'required',
+            'jenis_kelamin '=> 'required',
 
         ]);
 
         DB::table('mahasiswa')->insert([
             'name_mhs' => $request->name_mhs,
             'npm_mhs' => $request->npm_mhs,
-            'roles_id' => 2,
-            'password_mhs' => Hash::make('123456'),
-            'id_jurusan' => '1',
+            'id_jurusan' => $request->id_jurusan,
             'tahun_masuk' => $request->tahun_masuk,
+            'kelas'=>$request->kelas,
+            'jenis_kelamin' =>$request->jenis_kelamin,
         ]);
 
-        return redirect()->route('Admin/kelola_mhs_asing')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('Admin/kelola_mhs_asli')->with('success', 'Data berhasil ditambahkan');
     }
     public function edit($id)
     {
@@ -75,14 +78,14 @@ class AdminController extends Controller
             'id_jurusan' => $request->id_jurusan,
             'tahun_masuk' => $request->tahun_masuk,
         ]);
-        return redirect()->route('Admin/kelola_mhs_asing')->with('success', 'Data berhasil diubah');
+        return redirect()->route('Admin/kelola_mhs_asli')->with('success', 'Data berhasil diubah');
     }
 
     public function delete($id)
     {
-
         $admin = Mahasiswa::find($id);
         $admin->delete();
+
         return redirect()->route('Admin/kelola_mhs_asli')->with('success', 'Data berhasil dihapus');
     }
 }
