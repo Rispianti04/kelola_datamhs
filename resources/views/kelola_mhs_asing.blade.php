@@ -47,11 +47,11 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Nama Mahasiswa</th>
+                                        <th>NO</th>
+                                        <th>NAMA MAHASISWA</th>
                                         <th>NPM</th>
-                                        <th>Jurusan</th>
-                                        <th>Tahun Masuk</th>
+                                        <th>JURUSAN</th>
+                                        <th>TAHUN MASUK</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -65,48 +65,44 @@
                                         <td>{{ $siswa->tahun_masuk }}</td>
                                         <td>
 
+                                            <a href="#" data-toggle="modal" data-target="#Details{{$siswa->id}}" class="btn btn-primary btn-sm Edit">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                             <a href="#" data-toggle="modal" data-target="#Edit{{$siswa->id}}"
                                                 class="btn btn-warning btn-sm Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+
                                             <a href="#" data-toggle="modal" data-target="#delete{{$siswa->id}}"
                                                 class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                         
+
 
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nama Mahasiswa</th>
-                                        <th>NPM</th>
-                                        <th>Jurusan</th>
-                                        <th>Tahun Masuk</th>
-                                    </tr>
-                                </tfoot>
                             </table>
-                           
 
 
-                            </div>
 
                         </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
 
-        <!-- /.container-fluid -->
-        @include('admin.mahasiswa.create')
-        @include('admin.mahasiswa.edit')
-        @include('admin.mahasiswa.delete')
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- /.container-fluid -->
+    @include('admin.mahasiswa.create')
+    @include('admin.mahasiswa.edit')
+    @include('admin.mahasiswa.delete')
+    @include('admin.mahasiswa.details')
     </div>
 
 

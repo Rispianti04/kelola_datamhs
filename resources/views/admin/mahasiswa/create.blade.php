@@ -16,7 +16,7 @@
                             class="@error('name_mhs') is-invalid @enderror form-control" placeholder="Nama Mahasiswa"
                             value="{{ old('name_mhs') }}">
                         @error('name_mhs')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -25,7 +25,16 @@
                             class="@error('npm_mhs') is-invalid @enderror form-control" placeholder="NPM Mahasiswa"
                             value="{{ old('npm_mhs') }}">
                         @error('npm_mhs')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas Mahasiwa</label>
+                        <input id="kelas" name="kelas" type="text"
+                            class="@error('kelas') is-invalid @enderror form-control" placeholder="Kelas Mahasiswa"
+                            value="{{ old('kelas') }}">
+                        @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -34,11 +43,23 @@
                             class="@error('id_jurusan') is-invalid @enderror form-control">
                             <option value="">Pilih Jurusan</option>
                             @foreach ($jurusan as $jurusan)
-                            <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
+                                <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
                             @endforeach
                         </select>
                         @error('id_jurusan')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin"
+                            class="@error('jenis_kelamin') is-invalid @enderror form-control">
+                            <option value=""></option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                        @error('jenis_kelamin')
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     {{-- <div class="form-group">
@@ -51,32 +72,23 @@
                     </select>
 
                 </div> --}}
-                <div class="form-group">
-                    <label for="tahun_masuk">Tahun Masuk</label>
-                    <input id="tahun_masuk" name="tahun_masuk" type="number"
-                        class="@error('tahun_masuk') is-invalid @enderror form-control" placeholder="Tahun Masuk"
-                        value="{{ old('tahun_masuk') }}">
-                    @error('tahun_masuk')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <div class="form-group">
+                        <label for="tahun_masuk">Tahun Masuk</label>
+                        <input id="tahun_masuk" name="tahun_masuk" type="number"
+                            class="@error('tahun_masuk') is-invalid @enderror form-control" placeholder="Tahun Masuk"
+                            value="{{ old('tahun_masuk') }}">
+                        @error('tahun_masuk')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
-                <div class="form-group">
-                    <label for="password_mhs">Password</label>
-                    <input id="password_mhs" name="password_mhs" type="password"
-                        class="@error('password_mhs') is-invalid @enderror form-control" placeholder="Password"
-                        value="{{ old('password_mhs') }}">
-                    @error('password_mhs')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="Submit" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    </div>
-    
-</form>
 
+</form>

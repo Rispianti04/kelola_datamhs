@@ -27,27 +27,28 @@
                         <label for="">Jurusan</label>
                         <select class="form-control" name="id_jurusan">
                             @foreach($jurusan as $jur)
-                            <option value="{{$jur->id}}" {{$mhs->id_jurusan == $jur->id ? 'selected' : ''}}>
+                            <option value="{{$jur->id_jurusan}}" {{$mhs->id_jurusan == $jur->id_jurusan ? 'selected' : ''}}>
                                 {{$jur->nama_jurusan}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">NPM</label>
-                        <input type="text" class="form-control" id="" name="npm_mhs"
+                        <label for="">Tahun Masuk</label>
+                        <input type="text" class="form-control" id="" name="tahun_masuk"
                             value="{{$mhs->tahun_masuk}}">
                     </div>
                     <div class="form-group">
-                        <label for="password_mhs">Password</label>
-                        <input id="password_mhs" name="password_mhs" type="password"
-                            class="@error('password_mhs') is-invalid @enderror form-control" placeholder="Password"
-                            value="{{ $mhs->password_mhs }}">
-                        @error('password_mhs')
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin"
+                            class="@error('jenis_kelamin') is-invalid @enderror form-control">
+                            <option value="">Pilih Jurusan</option>
+                            <option value="Laki-Laki" {{$mhs->jenis_kelamin == $mhs->jenis_kelamin ? 'selected' : ''}}>Laki-Laki</option>
+                            <option value="Perempuan {{$mhs->jenis_kelamin == $mhs->jenis_kelamin ? 'selected' : ''}}">Perempuan</option>
+                        </select>
+                        @error('jenis_kelamin')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
-
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
