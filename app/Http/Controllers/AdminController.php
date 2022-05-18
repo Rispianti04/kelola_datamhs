@@ -88,8 +88,9 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        $admin = Mahasiswa::find($id);
-        $admin->delete();
+       $admin = Mahasiswa::find($id);
+       $admin->delete();   
+       
         return redirect()->route('Admin/kelola_mhs_asing')->with('success', 'Data berhasil dihapus');
     }
    
