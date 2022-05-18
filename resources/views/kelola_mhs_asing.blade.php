@@ -6,12 +6,10 @@
     {{ session('status') }}
 </div>
 @endif
-<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa</h1>
+<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa </h1>
 <section class="content-header">
     <div class="row">
-        <div class="col-sm-6">
-            <h1>Mahasiswa</h1>
-        </div>
+        
         {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -47,11 +45,11 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Nama Mahasiswa</th>
+                                        <th>NO</th>
+                                        <th>NAMA MAHASISWA</th>
                                         <th>NPM</th>
-                                        <th>Jurusan</th>
-                                        <th>Tahun Masuk</th>
+                                        <th>JURUSAN</th>
+                                        <th>TAHUN MASUK</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -69,7 +67,7 @@
                                                 class="btn btn-warning btn-sm Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="#" data-toggle="modal" data-target="#delete{{$siswa->id}}"
+                                            <a href="{{route('Admin/delete', ['id'=> $siswa->id])}}"
                                                 class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>

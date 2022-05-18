@@ -27,25 +27,17 @@
                         <label for="">Jurusan</label>
                         <select class="form-control" name="id_jurusan">
                             @foreach($jurusan as $jur)
-                            <option value="{{$jur->id}}" {{$mhs->id_jurusan == $jur->id ? 'selected' : ''}}>
+                            <option value="{{$jur->id_jurusan}}" {{$mhs->id_jurusan == $jur->id_jurusan ? 'selected' : ''}}>
                                 {{$jur->nama_jurusan}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">NPM</label>
-                        <input type="text" class="form-control" id="" name="npm_mhs"
+                        <label for="">Tahun Masuk</label>
+                        <input type="text" class="form-control" id="" name="tahun_masuk"
                             value="{{$mhs->tahun_masuk}}">
                     </div>
-                    <div class="form-group">
-                        <label for="password_mhs">Password</label>
-                        <input id="password_mhs" name="password_mhs" type="password"
-                            class="@error('password_mhs') is-invalid @enderror form-control" placeholder="Password"
-                            value="{{ $mhs->password_mhs }}">
-                        @error('password_mhs')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                
 
 
                     <button type="submit" class="btn btn-primary">Update</button>

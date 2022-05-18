@@ -60,15 +60,6 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="password_mhs">Password</label>
-                    <input id="password_mhs" name="password_mhs" type="password"
-                        class="@error('password_mhs') is-invalid @enderror form-control" placeholder="Password"
-                        value="{{ old('password_mhs') }}">
-                    @error('password_mhs')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="Submit" class="btn btn-primary">Save changes</button>
