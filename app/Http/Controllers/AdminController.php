@@ -41,17 +41,15 @@ class AdminController extends Controller
     }
     public function store(Request $request)
     {
-       
+        // return $request;
         $request->validate([
             'name_mhs'   => 'required',
             'npm_mhs'   => 'required|unique:mahasiswa',
             'id_jurusan' => 'required',
             'tahun_masuk' => 'required',
             'kelas'=> 'required',
-            'jenis_kelamin '=> 'required',
-
+            'jenis_kelamin'=> 'required',
         ]);
-
         DB::table('mahasiswa')->insert([
             'name_mhs' => $request->name_mhs,
             'npm_mhs' => $request->npm_mhs,
