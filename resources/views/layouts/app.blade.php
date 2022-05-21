@@ -101,6 +101,5 @@
     @if(count($errors) > 0)
     $('#Create').modal('show');
     @endif
-
 </script>
 @endsection
