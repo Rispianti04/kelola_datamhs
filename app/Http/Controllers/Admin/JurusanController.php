@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades;
 use DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\JurusanController;
+use App\Http\Controllers\SuperAdminController;
 // use App\Http\Controllers\Controller\Admin\JurusanController;
 
 
@@ -15,7 +15,7 @@ class JurusanController extends Controller
 {
     public function create()
     {
-        return view('admin.jurusan.create');
+        return view('superadmin.jurusan.create');
     }
     public function store(Request $request)
     {

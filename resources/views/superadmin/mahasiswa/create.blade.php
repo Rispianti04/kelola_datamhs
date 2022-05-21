@@ -37,6 +37,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    
                     <div class="form-group">
                         <label for="id_jurusan">Jurusan</label>
                         <select name="id_jurusan" id="id_jurusan"
@@ -84,8 +85,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="Submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                 </div>
             </div>
         </div>

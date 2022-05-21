@@ -29,6 +29,27 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin"
+                            class="@error('jenis_kelamin') is-invalid @enderror form-control">
+                            <option value=""></option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                        @error('jenis_kelamin')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas Mahasiwa</label>
+                        <input id="kelas" name="kelas" type="text"
+                            class="@error('kelas') is-invalid @enderror form-control" placeholder="Kelas Mahasiswa"
+                            value="{{ old('kelas') }}">
+                        @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="id_jurusan">Jurusan</label>
                         <select name="id_jurusan" id="id_jurusan"
                             class="@error('id_jurusan') is-invalid @enderror form-control">
@@ -61,14 +82,15 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password_mhs">Password</label>
-                    <input id="password_mhs" name="password_mhs" type="password"
-                        class="@error('password_mhs') is-invalid @enderror form-control" placeholder="Password"
-                        value="{{ old('password_mhs') }}">
-                    @error('password_mhs')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <label for="keterangan">Keterangan</label>
+                    <input id="keterangan" name="kelas" type="text"
+                        class="@error('keterangan') is-invalid @enderror form-control" placeholder="keterangan"
+                        value="{{ old('keterangan') }}">
+                    @error('keterangan')
+                        <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="Submit" class="btn btn-primary">Save changes</button>
