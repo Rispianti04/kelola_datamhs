@@ -39,6 +39,7 @@ class SuperAdminController extends Controller
         $jurusan = Jurusan::all();
         return view('superadmin.mahasiswa.create', compact('jurusan'));
     }
+
     public function store(Request $request)
     {
        
@@ -93,4 +94,15 @@ class SuperAdminController extends Controller
 
         return redirect()->route('Admin/kelola_mhs_asli')->with('success', 'Data berhasil dihapus');
     }
+    public function nilai()
+    {
+        return view('superadmin.penilaian.index');
+    }
+    //create nilai
+    public function create_nilai()
+    {
+        return view('superadmin.penilaian.create');
+    }
+    //store nilai
+    
 }
