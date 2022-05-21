@@ -21,7 +21,6 @@ class CreateMahasiswaAsingTable extends Migration
             $table->string('tahun_masuk');
             $table->string('keterangan');
             $table->string('kelas');
-            $table->string('waktu');
             $table->string('jenis_kelamin');
             $table->rememberToken();
             $table->timestamps();

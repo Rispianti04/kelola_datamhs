@@ -228,8 +228,8 @@ return [
         // Sidebar items:
 
         [
-            'text'        => 'Dashboard',
-            'url'         => 'Admin/dashboard',
+            'text'        => 'Halaman Utama',
+            'url'         => 'home',
             'icon'        => 'fas fa-home',
             'label_color' => 'success',
         ],
@@ -254,16 +254,17 @@ return [
                 ]
             ],
         ],
+       
+        [
+            'text' => 'Penilaian',
+            'url'  => 'SuperAdmin/nilai',
+            'icon' => 'fas fa-solid fa-file',
+            'can'  => 'SuperAdmin',
+        ],
         [
             'text' => 'Laporan',
             'url'  => 'laporan',
             'icon' => 'fas fa-solid fa-file',
-        ],
-        [
-            'text' => 'Nilai',
-            'url'  => 'SuperAdmin/nilai',
-            'icon' => 'fas fa-solid fa-file',
-            'can'  => 'SuperAdmin',
         ],
 
     ],

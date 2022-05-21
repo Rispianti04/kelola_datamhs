@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Admin\JurusanController;
+use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\SuperAdmin\JurusanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,17 +25,17 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
 
 Auth::routes();
-Route::get('/dashboard', [AdminController::class, 'dashboard']);
-Route::get('/kelola_mhs_asing', [AdminController::class, 'kelola_mhs_asing'])->name('Admin/kelola_mhs_asing');
-Route::get('/kelola_mhs_asli', [AdminController::class, 'kelola_mhs_asli'])->name('Admin/kelola_mhs_asli');
-Route::get('/jurusan', [AdminController::class, 'jurusan'])->name('Admin/jurusan');
-Route::get('/add_mhs_asing', [AdminController::class, 'add_mhs_asing'])->name('Admin/add_mhs_asing');
-Route::post('/store', [AdminController::class, 'store'])->name('Admin/store');
-Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('Admin/edit');
-Route::put('/update/{id}', [AdminController::class, 'update'])->name('Admin/update');
-Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('Admin/delete');
-Route::get('/jurusan/create', [JurusanController::class, 'create'])->name('Admin/jurusan/create');
-Route::post('/jurusan/store', [JurusanController::class, 'store']);
+Route::get('/dashboard', [SuperAdminController::class, 'home']);
+Route::get('/kelola_mhs_asing', [SuperAdminController::class, 'kelola_mhs_asing'])->name('SuperAdmin/kelola_mhs_asing');
+Route::get('/kelola_mhs_asli', [SuperAdminController::class, 'kelola_mhs_asli'])->name('SuperAdmin/kelola_mhs_asli');
+Route::get('/jurusan', [SuperAdminController::class, 'jurusan'])->name('SuperAdmin/jurusan');
+Route::get('/add_mhs_asing', [SuperAdminController::class, 'add_mhs_asing'])->name('SuperAdmin/add_mhs_asing');
+Route::post('/store', [SuperAdminController::class, 'store'])->name('SuperAdmin/store');
+Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('SuperAdmin/edit');
+Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('SuperAdmin/update');
+Route::delete('/delete/{id}', [SuperAdminController::class, 'delete'])->name('SuperAdmin/delete');
+Route::get('/jurusan/create', [SuperAdminController::class, 'create'])->name('SuperAdmin/jurusan/create');
+Route::post('/jurusan/store', [SuperAdminController::class, 'store']);
 
 
 Route::group(['prefix' => 'Admin', 'middleware' => ['Admin']], function () {

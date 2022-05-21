@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin
+class SuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        // if (auth()->user()->roles_id == 1) {
-        //     return $next($request);
-        // }
-        // return redirect('home')->with('eror');
+        if (auth()->user()->roles_id == 1) {
+            return $next($request);
+        }
+        return redirect('home')->with('eror');
     }
 }
- 
