@@ -254,10 +254,9 @@ return [
                 ]
             ],
         ],
-
         [
             'text' => 'Penilaian',
-            'url'  => 'SuperAdmin/nilai',
+            'url'  => 'nilai',
             'icon' => 'fas fa-solid fa-file',
             'label_color' => 'success',
         ],

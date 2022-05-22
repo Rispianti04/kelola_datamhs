@@ -34,11 +34,17 @@ Route::post('/store', [SuperAdminController::class, 'store'])->name('SuperAdmin/
 Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('SuperAdmin/edit');
 Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('SuperAdmin/update');
 Route::delete('/delete/{id}', [SuperAdminController::class, 'delete'])->name('SuperAdmin/delete');
+<<<<<<< HEAD
 Route::get('/jurusan/create', [JurusanController::class, 'create'])->name('SuperAdmin/jurusan/create');
 Route::post('/jurusan/store', [JurusanController::class, 'store']);
 
 Route::get('/nilai', [SuperAdminController::class, 'nilai'])->name('SuperAdmin/nilai');
 
+=======
+Route::get('/jurusan/create', [SuperAdminController::class, 'create'])->name('SuperAdmin/jurusan/create');
+Route::post('/jurusan/store', [SuperAdminController::class, 'store']);
+Route::get('/nilai', [SuperAdminController::class, 'nilai'])->name('SuperAdmin/nilai');
+>>>>>>> b96514c660653dc530a844acf5486d8986921ef2
 
 
 Route::group(['prefix' => 'Admin', 'middleware' => ['Admin']], function () {

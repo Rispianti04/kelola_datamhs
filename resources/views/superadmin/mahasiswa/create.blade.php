@@ -55,7 +55,7 @@
                         <label for="jenis_kelamin">Jenis Kelamin</label>
                         <select name="jenis_kelamin" id="jenis_kelamin"
                             class="@error('jenis_kelamin') is-invalid @enderror form-control">
-                            <option value=""></option>
+                            <option value="">Pilih Jenis Kelamin</option>
                             <option value="L">Laki-Laki</option>
                             <option value="P">Perempuan</option>
                         </select>

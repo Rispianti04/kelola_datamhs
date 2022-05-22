@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades;
 use DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\Admin\JurusanController;
 // use App\Http\Controllers\Controller\Admin\JurusanController;
 
 
