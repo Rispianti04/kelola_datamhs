@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Pengelolaan Data Mahasiswa Asing')
 @section('content_header')
-<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa Asing</h1>
+<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa </h1>
 <section class="content-header">
     <div class="row">
         <div class="col-sm-6">

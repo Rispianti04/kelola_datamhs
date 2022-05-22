@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('Admin/update', ['id'=> $mhs->id])}}" method="post">
+                <form action="{{route('SuperAdmin/update', ['id'=> $mhs->id])}}" method="post">
                     @csrf
                     {{method_field('PUT')}}
                     <div class="form-group">
@@ -27,15 +27,10 @@
                         <label for="">Jurusan</label>
                         <select class="form-control" name="id_jurusan">
                             @foreach($jurusan as $jur)
-                            <option value="{{$jur->id_jurusan}}" {{$mhs->id_jurusan == $jur->id_jurusan ? 'selected' : ''}}>
+                            <option value="{{$jur->id}}" {{$mhs->id_jurusan == $jur->id ? 'selected' : ''}}>
                                 {{$jur->nama_jurusan}}</option>
                             @endforeach
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tahun Masuk</label>
-                        <input type="text" class="form-control" id="" name="tahun_masuk"
-                            value="{{$mhs->tahun_masuk}}">
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -49,7 +44,28 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <input id="keterangan" name="kelas" type="text"
+                            class="@error('keterangan') is-invalid @enderror form-control" placeholder="keterangan"
+                            value="{{ old('keterangan') }}">
+                        @error('keterangan')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas Mahasiwa</label>
+                        <input id="kelas" name="kelas" type="text"
+                            class="@error('kelas') is-invalid @enderror form-control" placeholder="Kelas Mahasiswa"
+                            value="{{ old('kelas') }}">
+                        @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="modal-footer">
+                        <button type="Submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -6,12 +6,9 @@
     {{ session('status') }}
 </div>
 @endif
-<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa</h1>
+<h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa Asing</h1>
 <section class="content-header">
     <div class="row">
-        <div class="col-sm-6">
-            <h1>Mahasiswa</h1>
-        </div>
         {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -47,45 +44,43 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
-                                        <th>NAMA MAHASISWA</th>
-                                        <th>NPM</th>
-                                        <th>JURUSAN</th>
-                                        <th>TAHUN MASUK</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center">Tahuan Akademik</th>
+                                        <th class="text-center">Daya Tampung</th>
+                                        <th colspan="2" class="text-center">Jumlah <br>Calon Mahasiswa</th>
+                                        <th colspan="2" class="text-center">Jumlah <br>Mahasiswa baru</th>
+                                        <th colspan="2" class="text-center">Jumlah <br>Mahasisa Aktif</th>
+                                        <th>AKSI</th>
                                     </tr>
+                                    <tr>
+                                        <td>&NonBreakingSpace;</td>
+                                        <td></td>
+                                        <th class="text-center">Pendaftar</th>
+                                        <th class="text-center">Lulus Seleksi</th>
+                                        <th class="text-center">Reguler</th>
+                                        <th class="text-center">Transfer</th>
+                                        <th class="text-center">Reguler</th>
+                                        <th class="text-center">Transfer</th>
+                                      </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($mahasiswa as $siswa)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $siswa->name_mhs }}</td>
-                                        <td>{{ $siswa->npm_mhs }}</td>
-                                        <td>{{ $siswa->jurusan->nama_jurusan }}</td>
-                                        <td>{{ $siswa->tahun_masuk }}</td>
+                                        <td>2019/2020</td>
+                                        <td>100</td>
+                                        <td>100</td>
+                                        <td>100</td>
+                                        <td>100</td>
+                                        <td>100</td>
+                                        <td>100</td>
+                                        <td>100</td>
                                         <td>
-
-                                            <a href="#" data-toggle="modal" data-target="#Details{{$siswa->id}}" class="btn btn-primary btn-sm Edit">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="#" data-toggle="modal" data-target="#Edit{{$siswa->id}}"
-                                                class="btn btn-warning btn-sm Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-
-                                            <a href="#" data-toggle="modal" data-target="#delete{{$siswa->id}}"
-                                                class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-
-
+                                            <a href="#" data-toggle="modal" data-target="#Edit" class="btn btn-primary">Edit</a>
+                                            <a href="#" data-toggle="modal" data-target="#Delete" class="btn btn-danger">Delete</a>
+                                        </td>
                                     </tr>
-                                    @endforeach
+                                   
                                 </tbody>
+
                             </table>
-
-
-
                         </div>
 
                     </div>
@@ -99,10 +94,10 @@
     </div>
 
     <!-- /.container-fluid -->
-    @include('admin.mahasiswa.create')
-    @include('admin.mahasiswa.edit')
-    @include('admin.mahasiswa.delete')
-    @include('admin.mahasiswa.details')
+    @include('superadmin.penilaian.create')
+        {{-- @include('superadmin.penilaian.edit')
+        @include('superadmin.penilaian.delete')
+        @include('superadmin.penilaian.details') --}}
     </div>
 
 

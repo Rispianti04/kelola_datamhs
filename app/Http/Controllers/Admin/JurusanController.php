@@ -15,7 +15,7 @@ class JurusanController extends Controller
 {
     public function create()
     {
-        return view('admin.jurusan.create');
+        return view('superadmin.jurusan.create');
     }
     public function store(Request $request)
     {
