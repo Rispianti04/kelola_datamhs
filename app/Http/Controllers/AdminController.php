@@ -48,7 +48,7 @@ class AdminController extends Controller
             'id_jurusan' => 'required',
             'tahun_masuk' => 'required',
             'kelas'=> 'required',
-            'jenis_kelamin '=> 'required',
+            'jenis_kelamin'=> 'required',
 
         ]);
 

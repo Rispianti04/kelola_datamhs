@@ -15,7 +15,7 @@
                 
                 <div class="text-muted">
                     <p class="text-sm">Jenis Kelamin
-                        <b class="d-block">{{$mhs->jenis_kelamin}}</b>
+                        <b class="d-block">{{$mhs->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan'}}</b>
                     </p>
                     <p class="text-sm">NPM Mahasiswa
                         <b class="d-block">{{$mhs->npm_mhs}}</b>
