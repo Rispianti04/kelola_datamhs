@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\SuperAdmin\JurusanController;
+use App\Http\Controllers\Admin\JurusanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,8 +34,11 @@ Route::post('/store', [SuperAdminController::class, 'store'])->name('SuperAdmin/
 Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('SuperAdmin/edit');
 Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('SuperAdmin/update');
 Route::delete('/delete/{id}', [SuperAdminController::class, 'delete'])->name('SuperAdmin/delete');
-Route::get('/jurusan/create', [SuperAdminController::class, 'create'])->name('SuperAdmin/jurusan/create');
-Route::post('/jurusan/store', [SuperAdminController::class, 'store']);
+Route::get('/jurusan/create', [JurusanController::class, 'create'])->name('SuperAdmin/jurusan/create');
+Route::post('/jurusan/store', [JurusanController::class, 'store']);
+
+Route::get('/nilai', [SuperAdminController::class, 'nilai'])->name('SuperAdmin/nilai');
+
 
 
 Route::group(['prefix' => 'Admin', 'middleware' => ['Admin']], function () {

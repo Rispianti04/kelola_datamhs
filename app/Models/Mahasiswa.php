@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Mahasiswa extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -55,4 +56,9 @@ class Mahasiswa extends Authenticatable
     {
         return $this->admin;
     }
+
+    public function penilaian(){
+        return $this->hasOne(Penilaian::class, 'id_penilaian', 'id_penilaian');
+    }
+
 }

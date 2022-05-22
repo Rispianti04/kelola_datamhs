@@ -93,4 +93,9 @@ class SuperAdminController extends Controller
 
         return redirect()->route('Admin/kelola_mhs_asli')->with('success', 'Data berhasil dihapus');
     }
+
+    public function nilai()
+    {
+        return view('superadmin.penilaian.index');
+    }
 }

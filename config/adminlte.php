@@ -250,21 +250,22 @@ return [
                 [
                     'text' => 'Jurusan',
                     'url' => 'jurusan',
-              
+
                 ]
             ],
         ],
-       
+
         [
             'text' => 'Penilaian',
             'url'  => 'SuperAdmin/nilai',
             'icon' => 'fas fa-solid fa-file',
-            'can'  => 'SuperAdmin',
+            'label_color' => 'success',
         ],
         [
             'text' => 'Laporan',
             'url'  => 'laporan',
             'icon' => 'fas fa-solid fa-file',
+            'label_color' => 'success',
         ],
 
     ],

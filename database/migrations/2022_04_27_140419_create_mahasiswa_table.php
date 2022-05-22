@@ -21,6 +21,7 @@ class CreateMahasiswaTable extends Migration
             $table->string('tahun_masuk');
             $table->string('kelas');
             $table->string('jenis_kelamin');
+            $table->foreignId('id_penilaian');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -27,7 +27,7 @@ class JurusanController extends Controller
         DB::table('jurusan')->insert([
             'nama_jurusan' => $request->nama_jurusan,
         ]);
-        return redirect()->route('Admin/jurusan')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('SuperAdmin/jurusan')->with('success', 'Data berhasil ditambahkan');
     }
    
 }
