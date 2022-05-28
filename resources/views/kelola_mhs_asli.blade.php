@@ -6,7 +6,7 @@
             {{ session('status') }}
         </div>
     @endif
-    <h1 class="m-0 text-dark text-center">Pengelolaan Data Mahasiswa Asli</h1>
+    <h1 class="m-0 text-dark text-center">Data Mahasiswa Asli</h1>
     <section class="content-header">
         <div class="row">
             {{-- <div class="col-sm-6">
@@ -47,7 +47,7 @@
                                             <th>NO</th>
                                             <th>NAMA</th>
                                             <th>NPM</th>
-                                            <th>JURUSAN</th>
+                                            <th>PROGRAM STUDI</th>
                                             <th>TAHUN MASUK</th>
                                             <th>AKSI</th>
                                         </tr>
@@ -59,7 +59,7 @@
                                                 <td>{{ $siswa->name_mhs }}</td>
                                                 <td>{{ $siswa->npm_mhs }}</td>
                                                 <td>{{ $siswa->jurusan->nama_jurusan }}</td>
-                                                <td>{{ $siswa->tahun_masuk }}</td>
+                                                <td>{{ $siswa->penilaian->tahun_akademik}}</td>
                                                 <td>
 
                                                     <a href="#" data-toggle="modal"

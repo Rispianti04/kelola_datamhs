@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Mahasiswa;
 use App\Models\Jurusan;
-use App\Models\Mhsasing;
+
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\SuperAdmin;
+use App\Models\Penilaian;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use PDF;
 
 class SuperAdminController extends Controller
 {
@@ -16,17 +20,13 @@ class SuperAdminController extends Controller
     {
         return view('dashboard');
     }
-    public function kelola_mhs_asing()
-    {
-        $jurusan = Jurusan::all();
-        $mahasiswa = Mhsasing::all();
-        return view('superadmin.mhsasing.index', compact('jurusan', 'mahasiswa'));
-    }
+
     public function kelola_mhs_asli()
     {
+        $penilaian = Penilaian::all();
         $jurusan = Jurusan::all();
         $mahasiswa = Mahasiswa::all();
-        return view('kelola_mhs_asli', compact('mahasiswa', 'jurusan'));
+        return view('kelola_mhs_asli', compact('mahasiswa', 'jurusan', 'penilaian'));
     }
     public function jurusan()
     {
@@ -40,18 +40,21 @@ class SuperAdminController extends Controller
         return view('superadmin.mahasiswa.create', compact('jurusan'));
     }
 
-    public function store(Request $request)
+    public function store_mahasiswa(Request $request)
     {
-       
+
+        $penilaian = DB::table('seleksi_mahasiswa')->select('tahun_akademik')->where('id_penilaian', $request->id_penilaian)->first();
+        $date = Carbon::now()->format('Y');
+        $thn = $penilaian->tahun_akademik;
+        $tahun = explode("/", $thn);
+
         $request->validate([
             'name_mhs'   => 'required',
             'npm_mhs'   => 'required|unique:mahasiswa',
             'id_jurusan' => 'required',
-            'tahun_masuk' => 'required',
-            'kelas'=> 'required',
-            'jenis_kelamin'=> 'required',
-            'alamat'=> 'required',
-            'keterangan'=>'keterangan',
+            'id_penilaian' => 'required',
+            'kelas' => 'required',
+            'jenis_kelamin' => 'required',
 
         ]);
 
@@ -59,12 +62,44 @@ class SuperAdminController extends Controller
             'name_mhs' => $request->name_mhs,
             'npm_mhs' => $request->npm_mhs,
             'id_jurusan' => $request->id_jurusan,
-            'tahun_masuk' => $request->tahun_masuk,
-            'kelas'=>$request->kelas,
-            'jenis_kelamin' =>$request->jenis_kelamin,
-            'alamat'=> $request->alamat,
+            'id_penilaian' => $request->id_penilaian,
+            'kelas' => $request->kelas,
+            'jenis_kelamin' => $request->jenis_kelamin,
         ]);
+        if ($request->kelas == 'reg') {
+            if($tahun[0]== $date )
+            {
+                Penilaian::where('id_penilaian', $request->id_penilaian)
+                ->update([
+                    'jml_calon_mhs_aktif_reguler' => DB::raw('jml_calon_mhs_aktif_reguler+1'),
+                    'jml_calon_mhs_baru_reguler' => DB::raw('jml_calon_mhs_baru_reguler+1'),
+                ]);
+            }else
+            {
+                Penilaian::where('id_penilaian', $request->id_penilaian)
+                ->update([
+                    'jml_calon_mhs_aktif_reguler' => DB::raw('jml_calon_mhs_aktif_reguler+1'),
+                ]);
+            }   
+        } else {
+                if($tahun[0] == $date )
+                {
+                    Penilaian::where('id_penilaian', $request->id_penilaian)
+                    ->update([
+                        'jml_calon_mhs_aktif_transfer' => DB::raw('jml_calon_mhs_aktif_transfer+1'),
+                        'jml_calon_mhs_baru_transfer' => DB::raw('jml_calon_mhs_baru_transfer+1'),
+                    ]);
+                }else
+                {
+                    Penilaian::where('id_penilaian', $request->id_penilaian)
+                    ->update([
+                        'jml_calon_mhs_aktif_transfer' => DB::raw('jml_calon_mhs_aktif_transfer+1'),
+                    ]);
+                }   
+        }
         
+
+
 
         return redirect()->route('SuperAdmin/kelola_mhs_asli')->with('success', 'Data berhasil ditambahkan');
     }
@@ -81,9 +116,11 @@ class SuperAdminController extends Controller
             'name_mhs' => $request->name_mhs,
             'npm_mhs' => $request->npm_mhs,
             'id_jurusan' => $request->id_jurusan,
-            'tahun_masuk' => $request->tahun_masuk,
+            'id_penilaian' => $request->id_penilaian,
+            'kelas' => $request->kelas,
+            'jenis_kelamin' => $request->jenis_kelamin,
         ]);
-        
+
         return redirect()->route('SuperAdmin/kelola_mhs_asli')->with('success', 'Data berhasil diubah');
     }
 
@@ -92,10 +129,40 @@ class SuperAdminController extends Controller
         $admin = Mahasiswa::find($id);
         $admin->delete();
 
-        return redirect()->route('Admin/kelola_mhs_asli')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('SuperAdmin/kelola_mhs_asli')->with('success', 'Data berhasil dihapus');
     }
     public function nilai()
     {
-        return view('superadmin.penilaian.index');
+        $penilaian = Penilaian::all();
+        return view('superadmin.penilaian.index', compact('penilaian'));
+    }
+    public function store_nilai(Request $request)
+    {
+        $request->validate([
+            'daya_tampung'   => 'required',
+            'tahun_akademik'   => 'required|unique:seleksi_mahasiswa',
+            'jml_calon_mhs_pendaftar'   => 'required',
+            'jml_calon_mhs_seleksi'   => 'required',
+        ]);
+        // $mahasiswa = Mahasiswa::where('tahun_masuk', $request->tahun_masuk)->get();
+
+        if ($request->daya_tampung >= $request->jml_calon_mhs_pendaftar) {
+            DB::table('seleksi_mahasiswa')->insert([
+                'id_penilaian' => $request->id_penilaian,
+                'tahun_akademik' => $request->tahun_akademik,
+                'jml_calon_mhs_pendaftar' => $request->jml_calon_mhs_pendaftar,
+                'jml_calon_mhs_seleksi' => $request->jml_calon_mhs_seleksi,
+                'jml_calon_mhs_baru_reguler' => '0',
+                'jml_calon_mhs_baru_transfer' => '0',
+                'jml_calon_mhs_aktif_reguler' => '0',
+                'jml_calon_mhs_aktif_transfer' => '0',
+                'daya_tampung' => $request->daya_tampung,
+            ]);
+            return redirect()->route('SuperAdmin/nilai')->with('success', 'Data berhasil ditambahkan');
+        }
+        return redirect()->route('SuperAdmin/nilai')->with('success', 'Data tidak berhasil ditambahkan');
+    }
+    public function print_mahasiswa()
+    {
     }
 }

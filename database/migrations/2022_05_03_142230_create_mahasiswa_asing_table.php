@@ -18,7 +18,7 @@ class CreateMahasiswaAsingTable extends Migration
             $table->string('name_mhs');
             $table->string('npm_mhs')->unique();
             $table->foreignId('id_jurusan');
-            $table->string('tahun_masuk');
+            $table->foreignId('id_penilaian');
             $table->string('keterangan');
             $table->string('kelas');
             $table->string('jenis_kelamin');

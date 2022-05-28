@@ -9,8 +9,8 @@
             </button>
         </div>
         <div class="modal-body">
-            Are you sure want to delete this data <strong class="" id="delete-nama"></strong>?
-            <form method="post" action="{{ url('delete', $mhs->id) }}" enctype="multipart/form-data">
+            Are you sure want to delete this data?? <strong class="" id="delete-nama"></strong>?
+            <form method="post" action="{{ url('SuperAdmin/delete', $mhs->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
         </div>

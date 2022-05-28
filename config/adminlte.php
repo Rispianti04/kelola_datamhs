@@ -234,21 +234,29 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Kelola Akun',
+            'url'         => 'kelola_akun',
+            'icon'        => 'fas fa-home',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Kelola Data Mahasiswa',
             //'url'  => 'Admin/Datamhs',
             'icon' => 'fas fa-solid fa-book',
+            'can'=> 'SuperAdmin',
             'submenu' =>
             [
-                [
-                    'text' => 'Data Mahasiswa Asing',
-                    'url' => 'kelola_mhs_asing',
-                ],
                 [
                     'text' => 'Data Mahasiswa Asli',
                     'url' => 'kelola_mhs_asli',
                 ],
                 [
-                    'text' => 'Jurusan',
+                    'text' => 'Data Mahasiswa Asing',
+                    'url' => 'kelola_mhs_asing',
+                ],
+                
+                [
+                    'text' => 'Data Jurusan',
                     'url' => 'jurusan',
 
                 ]
@@ -256,15 +264,28 @@ return [
         ],
         [
             'text' => 'Penilaian',
-            'url'  => 'nilai',
+            // 'url'  => 'nilai',
             'icon' => 'fas fa-solid fa-file',
-            'label_color' => 'success',
+            'can'=> 'SuperAdmin',
+            
+            'submenu' =>
+            [
+                [
+                    'text' => 'Mahasiswa Asli',
+                    'url' => 'nilai',
+                ],
+                [
+                    'text' => 'Mahasiswa Asing',
+                    'url' => 'nilai2',
+                ],
+            ]
         ],
         [
             'text' => 'Laporan',
             'url'  => 'laporan',
             'icon' => 'fas fa-solid fa-file',
             'label_color' => 'success',
+            'can'=> 'SuperAdmin',
         ],
 
     ],

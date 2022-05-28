@@ -11,11 +11,38 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name_mhs">Daya Tampung</label>
-                        <input id="name_mhs" name="name_mhs" type="text"
-                            class="@error('name_mhs') is-invalid @enderror form-control" placeholder="Daya Tampung"
-                            value="{{ old('name_mhs') }}">
-                        @error('name_mhs')
+                        <label for="tahun_akademik">Tahun Akademik</label>
+                        <input id="tahun_akademik" name="tahun_akademik" type="text"
+                            class="@error('tahun_akademik') is-invalid @enderror form-control" placeholder="Tahun Akademik"
+                            value="{{ old('tahun_akademik') }}">
+                        @error('tahun_akademik')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="daya_tampung">Daya Tampung</label>
+                        <input id="daya_tampung" name="daya_tampung" type="text"
+                            class="@error('daya_tampung') is-invalid @enderror form-control" placeholder="Daya Tampung"
+                            value="{{ old('daya_tampung') }}">
+                        @error('daya_tampung')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="jml_calon_mhs_pendaftar">Jumlah Pendaftar</label>
+                        <input id="jml_calon_mhs_pendaftar" name="jml_calon_mhs_pendaftar" type="number"
+                            class="@error('jml_calon_mhs_pendaftar') is-invalid @enderror form-control" placeholder="Jumlah Pendaftar"
+                            value="{{ old('jml_calon_mhs_pendaftar') }}">
+                        @error('jml_calon_mhs_pendaftar')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="jml_calon_mhs_seleksi">Jumlah Mahasiswa Seleksi</label>
+                        <input id="jml_calon_mhs_seleksi" name="jml_calon_mhs_seleksi" type="number"
+                            class="@error('jml_calon_mhs_seleksi') is-invalid @enderror form-control" placeholder="Jumlah Mahasiswa Seleksi"
+                            value="{{ old('jml_calon_mhs_seleksi') }}">
+                        @error('jml_calon_mhs_seleksi')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

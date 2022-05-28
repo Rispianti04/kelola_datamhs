@@ -1,4 +1,4 @@
-<form action="{{ url('store') }}" method="POST">
+<form action="{{ url('store_mahasiswa') }}" method="POST">
     @csrf
     <div class="modal" tabindex="-1" role="dialog" id="Create">
         <div class="modal-dialog" role="document">
@@ -29,17 +29,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="kelas">Kelas Mahasiwa</label>
-                        <input id="kelas" name="kelas" type="text"
-                            class="@error('kelas') is-invalid @enderror form-control" placeholder="Kelas Mahasiswa"
-                            value="{{ old('kelas') }}">
-                        @error('kelas')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="id_jurusan">Jurusan</label>
+                        <label for="id_jurusan">Program Studi</label>
                         <select name="id_jurusan" id="id_jurusan"
                             class="@error('id_jurusan') is-invalid @enderror form-control">
                             <option value="">Pilih Jurusan</option>
@@ -52,38 +42,45 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="jenis_kelamin"
-                            class="@error('jenis_kelamin') is-invalid @enderror form-control">
-                            <option value="">Pilih Jenis Kelamin</option>
-                            <option value="L">Laki-Laki</option>
-                            <option value="P">Perempuan</option>
+                        <label for="kelas">Kelas Mahasisa</label>
+                        <select name="kelas" id="kelas"
+                            class="@error('kelas') is-invalid @enderror form-control">
+                            <option value="">Pilih Kelas</option>
+                            <option value="reg">Reguler</option>
+                            <option value="nr">Non Reguler</option>
                         </select>
-                        @error('jenis_kelamin')
+                        @error('kelas')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label>Jurusan</label>
-                        <select name="id_jurusan"  class="form-control select2" style="width: 100%;" >
-                            <option selected="selected">Pilih Jurusan</option>
-                            @foreach ($jurusan ?? '' as $j)
-                            <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
-                    @endforeach
+                    
+                <div class="form-group">
+                    <label for="id_penilaian">Tahun Masuk</label>
+                    <select name="id_penilaian" id="id_penilaian"
+                        class="@error('id_penilaian') is-invalid @enderror form-control">
+                        <option value="">Pilih Tahun Masuk</option>
+                        @foreach ($penilaian as $nilai)
+                            <option value="{{ $nilai->id_penilaian }}">{{ $nilai->tahun_akademik }}</option>
+                        @endforeach
                     </select>
-
-                </div> --}}
-                    <div class="form-group">
-                        <label for="tahun_masuk">Tahun Masuk</label>
-                        <input id="tahun_masuk" name="tahun_masuk" type="number"
-                            class="@error('tahun_masuk') is-invalid @enderror form-control" placeholder="Tahun Masuk"
-                            value="{{ old('tahun_masuk') }}">
-                        @error('tahun_masuk')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
+                    @error('id_penilaian')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+                <div class="form-group">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" id="jenis_kelamin"
+                        class="@error('jenis_kelamin') is-invalid @enderror form-control">
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                    @error('jenis_kelamin')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+            </div>
                 <div class="modal-footer">
                     <button type="Submit" class="btn btn-primary">Simpan</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>

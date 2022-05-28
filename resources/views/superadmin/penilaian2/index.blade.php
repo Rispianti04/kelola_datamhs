@@ -45,31 +45,20 @@
                                     <thead>
                                         <tr>
                                             <th rowspan="2">Tahuan Akademik</th>
-                                            <th rowspan="2">Daya Tampung</th>
-                                            <th colspan="2" class="text-center">Jumlah <br>Calon Mahasiswa</th>
-                                            <th colspan="2" class="text-center">Jumlah <br>Mahasiswa baru</th>
-                                            <th colspan="2" class="text-center">Jumlah <br>Mahasisa Aktif</th>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">Pendaftar</th>
-                                            <th class="text-center">Lulus Seleksi</th>
-                                            <th class="text-center">Reguler</th>
-                                            <th class="text-center">Transfer</th>
-                                            <th class="text-center">Reguler</th>
-                                            <th class="text-center">Transfer</th>
+                                            <th rowspan="2">Program Studi</th>
+                                            <th class="text-center">Jumlah <br>Mahasiswa Asing <br> Aktif</th>
+                                            <th class="text-center">Jumlah <br>Mahasiswa Asing <br> Full Time</th>
+                                            <th class="text-center">Jumlah <br>Mahasiswa Asing <br> Part Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($penilaian as $nilai)
+                                        @foreach ($penilaian2 as $nilai)
                                             <tr>
                                                 <td>{{ $nilai->tahun_akademik }}</td>
-                                                <td>{{ $nilai->daya_tampung }}</td>
-                                                <td>{{ $nilai->jml_calon_mhs_pendaftar }}</td>
-                                                <td>{{ $nilai->jml_calon_mhs_seleksi }}</td>
-                                                <td>{{ $nilai->jml_calon_mhs_baru_reguler }}</td>
-                                                <td>{{ $nilai->jml_calon_mhs_baru_transfer }}</td>
-                                                <td>{{ $nilai->jml_calon_mhs_aktif_reguler }}</td>
-                                                <td>{{ $nilai->jml_calon_mhs_aktif_transfer }}</td>
+                                                <td>{{ $nilai->prodi }}</td>
+                                                <td>{{ $nilai->jml_mhs_asing_aktif }}</td>
+                                                <td>{{ $nilai->jml_mhs_asing_full }}</td>
+                                                <td>{{ $nilai->jml_mhs_asing_part }}</td>
                                             </tr>
                                         @endforeach
 
@@ -89,7 +78,7 @@
         </div>
 
         <!-- /.container-fluid -->
-        @include('superadmin.penilaian.create')
+        @include('superadmin.penilaian2.create')
         {{-- @include('superadmin.penilaian.edit')
         @include('superadmin.penilaian.delete')
         @include('superadmin.penilaian.details') --}}

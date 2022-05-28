@@ -21,12 +21,9 @@ class Mhsasing extends Authenticatable
      */
     public $table = "mahasiswa_asing";
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name_mhs',
         'npm',
         'id_jurusan',
-        'roles_id',
         'tahun_masuk',
     ];
 
@@ -58,4 +55,9 @@ class Mhsasing extends Authenticatable
     {
         return $this->admin;
     }
+
+    public function penilaian2(){
+        return $this->hasOne(Penilaian2::class, 'id_penilaian', 'id_penilaian');
+    }
+
 }

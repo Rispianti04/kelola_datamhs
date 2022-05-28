@@ -15,10 +15,13 @@ class CreateSeleksiMahasiswaTable extends Migration
     {
         Schema::create('seleksi_mahasiswa', function (Blueprint $table) {
             $table->increments('id_penilaian');
-            $table->year('tahun_akademik');
-            $table->string('jml_calon_mhs');
-            $table->string('jml_calon_mhs_baru');
-            $table->string('jml_calon_mhs_aktif');
+            $table->string('tahun_akademik');
+            $table->string('jml_calon_mhs_pendaftar');
+            $table->string('jml_calon_mhs_seleksi');
+            $table->string('jml_calon_mhs_baru_reguler');
+            $table->string('jml_calon_mhs_baru_transfer');
+            $table->string('jml_calon_mhs_aktif_reguler');
+            $table->string('jml_calon_mhs_aktif_transfer');
             $table->string('daya_tampung');
             $table->timestamps();
         });

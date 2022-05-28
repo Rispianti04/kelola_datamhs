@@ -19,12 +19,12 @@
                             value="{{$mhs->name_mhs}}">
                     </div>
                     <div class="form-group">
-                        <label for="">NPM</label>
+                        <label for="">NPM Mahasiswa</label>
                         <input type="text" class="form-control" id="" name="npm_mhs"
                             value="{{$mhs->npm_mhs}}">
                     </div>
                     <div class="form-group">
-                        <label for="">Jurusan</label>
+                        <label for="">Program Studi</label>
                         <select class="form-control" name="id_jurusan">
                             @foreach($jurusan as $jur)
                             <option value="{{$jur->id_jurusan}}" {{$mhs->id_jurusan == $jur->id_jurusan ? 'selected' : ''}}>
@@ -33,9 +33,29 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Tahun Masuk</label>
-                        <input type="text" class="form-control" id="" name="tahun_masuk"
-                            value="{{$mhs->tahun_masuk}}">
+                        <label for="kelas">Kelas Mahasisa</label>
+                        <select name="kelas" id="kelas"
+                            class="@error('kelas') is-invalid @enderror form-control">
+                            <option value="">Pilih Kelas</option>
+                            <option value="reg">Reguler</option>
+                            <option value="nr">Non Reguler</option>
+                        </select>
+                        @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="id_penilaian">Tahun Masuk</label>
+                        <select name="id_penilaian" id="id_penilaian"
+                            class="@error('id_penilaian') is-invalid @enderror form-control">
+                            <option value="">Pilih Tahun Masuk</option>
+                            @foreach ($penilaian as $nilai)
+                                <option value="{{ $nilai->id_penilaian }}">{{ $nilai->tahun_akademik }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_penilaian')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -49,15 +69,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="kelas">Kelas Mahasiwa</label>
-                        <input id="kelas" name="kelas" type="text"
-                            class="@error('kelas') is-invalid @enderror form-control" placeholder="Kelas Mahasiswa"
-                            value="{{ old('kelas') }}">
-                        @error('kelas')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                   
                     <div class="modal-footer">
                         <button type="Submit" class="btn btn-primary">Simpan</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>

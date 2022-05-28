@@ -27,11 +27,11 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h3 class="card-title">Data Jurusan</h3>
+                                <h3 class="card-title">Program Studi</h3>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-right">
-                                    <a href="{{ url('/jurusan/create') }}" class="btn btn-primary">Tambah Data</a>
+                                    <a href="{{ url('/jurusan/create') }}" class="btn btn-primary">Tambah Program Studi</a>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>NAMA JURUSAN</th>
+                                        <th>Program Studi</th>
                                         <th>AKSI</th>
                                     </tr>
                                 </thead>

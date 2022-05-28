@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\Admin\JurusanController;
+use App\Http\Controllers\Admin\MahasiswaController;
+use App\Http\Controllers\LaporanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,25 +29,32 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])
 
 Auth::routes();
 Route::get('/dashboard', [SuperAdminController::class, 'home']);
-Route::get('/kelola_mhs_asing', [SuperAdminController::class, 'kelola_mhs_asing'])->name('SuperAdmin/kelola_mhs_asing');
-Route::get('/kelola_mhs_asli', [SuperAdminController::class, 'kelola_mhs_asli'])->name('SuperAdmin/kelola_mhs_asli');
+
+Route::get('/kelola_mhs_asli', [SuperAdminController::class, 'kelola_mhs_asli'])->name('SuperAdmin/kelola_mhs_asli')->middleware();
+Route::get('/add_mhs_asli', [SuperAdminController::class, 'add_mhs_asli'])->name('SuperAdmin/create');
 Route::get('/jurusan', [SuperAdminController::class, 'jurusan'])->name('SuperAdmin/jurusan');
-Route::get('/add_mhs_asing', [SuperAdminController::class, 'add_mhs_asing'])->name('SuperAdmin/add_mhs_asing');
-Route::post('/store', [SuperAdminController::class, 'store'])->name('SuperAdmin/store');
+Route::post('/store_mahasiswa', [SuperAdminController::class, 'store_mahasiswa'])->name('SuperAdmin/store');
 Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('SuperAdmin/edit');
-Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('SuperAdmin/update');
-Route::delete('/delete/{id}', [SuperAdminController::class, 'delete'])->name('SuperAdmin/delete');
-<<<<<<< HEAD
+Route::put('/update/mahasiswa/{id}', [SuperAdminController::class, 'update'])->name('SuperAdmin/update');
+Route::delete('SuperAdmin/delete/{id}', [SuperAdminController::class, 'delete'])->name('SuperAdmin/delete');
 Route::get('/jurusan/create', [JurusanController::class, 'create'])->name('SuperAdmin/jurusan/create');
-Route::post('/jurusan/store', [JurusanController::class, 'store']);
-
+Route::post('/jurusan/store', [jurusanController::class, 'store']);
 Route::get('/nilai', [SuperAdminController::class, 'nilai'])->name('SuperAdmin/nilai');
 
-=======
-Route::get('/jurusan/create', [SuperAdminController::class, 'create'])->name('SuperAdmin/jurusan/create');
-Route::post('/jurusan/store', [SuperAdminController::class, 'store']);
-Route::get('/nilai', [SuperAdminController::class, 'nilai'])->name('SuperAdmin/nilai');
->>>>>>> b96514c660653dc530a844acf5486d8986921ef2
+Route::post('/store_nilai', [SuperAdminController::class, 'store_nilai'])->name('SuperAdmin/store');
+
+Route::get('/laporan', [LaporanController::class, 'laporan'])->name('Laporan/laporan');
+
+//mhs asing
+Route::get('/kelola_mhs_asing', [MahasiswaController::class, 'kelola_mhs_asing'])->name('Mahasiswa/index');
+Route::get('/add_mhs_asing', [MahasiswaController::class, 'add_mhs_asing'])->name('Mahasiswa/create');
+Route::put('/update/{id}', [MahasiswaController::class, 'update'])->name('Mahasiswa/update');
+Route::get('/edit/{id}', [MahasiswaController::class, 'edit'])->name('Mahasiswa/edit');
+Route::post('/store', [MahasiswaController::class, 'store'])->name('Mahasiswa/store');
+Route::delete('Mahasiswa/delete/{id}', [MahasiswaController::class, 'delete'])->name('Mahasiswa/delete');
+Route::get('/nilai2', [MahasiswaController::class, 'nilai2'])->name('Mahasiswa/nilai2');
+Route::post('/store_nilai2', [MahasiswaController::class, 'store_nilai2'])->name('Mahasiswa/store');
+
 
 
 Route::group(['prefix' => 'Admin', 'middleware' => ['Admin']], function () {

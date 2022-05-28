@@ -29,28 +29,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="jenis_kelamin"
-                            class="@error('jenis_kelamin') is-invalid @enderror form-control">
-                            <option value=""></option>
-                            <option value="L">Laki-Laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                        @error('jenis_kelamin')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="kelas">Kelas Mahasiwa</label>
-                        <input id="kelas" name="kelas" type="text"
-                            class="@error('kelas') is-invalid @enderror form-control" placeholder="Kelas Mahasiswa"
-                            value="{{ old('kelas') }}">
-                        @error('kelas')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="id_jurusan">Jurusan</label>
+                        <label for="id_jurusan">Program Studi</label>
                         <select name="id_jurusan" id="id_jurusan"
                             class="@error('id_jurusan') is-invalid @enderror form-control">
                             <option value="">Pilih Jurusan</option>
@@ -62,39 +41,60 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label>Jurusan</label>
-                        <select name="id_jurusan"  class="form-control select2" style="width: 100%;" >
-                            <option selected="selected">Pilih Jurusan</option>
-                            @foreach ($jurusan ?? '' as $j)
-                            <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
-                    @endforeach
-                    </select>
-
-                </div> --}}
-                <div class="form-group">
-                    <label for="tahun_masuk">Tahun Masuk</label>
-                    <input id="tahun_masuk" name="tahun_masuk" type="number"
-                        class="@error('tahun_masuk') is-invalid @enderror form-control" placeholder="Tahun Masuk"
-                        value="{{ old('tahun_masuk') }}">
-                    @error('tahun_masuk')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas Mahasisa</label>
+                        <select name="kelas" id="kelas"
+                            class="@error('kelas') is-invalid @enderror form-control">
+                            <option value="Kelas Mahasiswa">Pilih Kelas</option>
+                            <option value="reg">Reguler</option>
+                            <option value="nr">Non Reguler</option>
+                        </select>
+                        @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id_penilaian">Tahun Masuk</label>
+                        <select name="id_penilaian" id="id_penilaian"
+                            class="@error('id_penilaian') is-invalid @enderror form-control">
+                            <option value="">Pilih Tahun Masuk</option>
+                            @foreach ($penilaian2 as $nilai)
+                                <option value="{{ $nilai->id_penilaian }}">{{ $nilai->tahun_akademik }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_penilaian')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 <div class="form-group">
                     <label for="keterangan">Keterangan</label>
-                    <input id="keterangan" name="kelas" type="text"
-                        class="@error('keterangan') is-invalid @enderror form-control" placeholder="keterangan"
-                        value="{{ old('keterangan') }}">
+                    <select name="keterangan" id="keterangan"
+                        class="@error('keterangan') is-invalid @enderror form-control">
+                        <option value="Pilih Keterangan">Keterangan</option>
+                        <option value="pindahan">Pindahan</option>
+                        <option value="mbkm">MBKM</option>
+                    </select>
                     @error('keterangan')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                
+                <div class="form-group">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" id="jenis_kelamin"
+                        class="@error('jenis_kelamin') is-invalid @enderror form-control">
+                        <option value=""></option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                    @error('jenis_kelamin')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="Submit" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="Submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
             </div>
         </div>
     </div>
