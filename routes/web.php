@@ -44,6 +44,8 @@ Route::get('/nilai', [SuperAdminController::class, 'nilai'])->name('SuperAdmin/n
 Route::post('/store_nilai', [SuperAdminController::class, 'store_nilai'])->name('SuperAdmin/store');
 
 Route::get('/laporan', [LaporanController::class, 'laporan'])->name('Laporan/laporan');
+Route::get('/Laporan/Mahasiswa', [LaporanController::class, 'mahasiswa'])->name('SuperAdmin/laporan/mahasiswa');
+Route::get('/Laporan/Cetak_PDF', [LaporanController::class, 'cetak_pdf'])->name('Laporan/cetak_pdf');
 
 //mhs asing
 Route::get('/kelola_mhs_asing', [MahasiswaController::class, 'kelola_mhs_asing'])->name('Mahasiswa/index');

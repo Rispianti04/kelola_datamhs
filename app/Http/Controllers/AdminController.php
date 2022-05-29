@@ -42,15 +42,6 @@ use Illuminate\Http\Request;
     // public function store(Request $request)
     // {
        
-<<<<<<< HEAD
-        $request->validate([
-            'name_mhs'   => 'required',
-            'npm_mhs'   => 'required|unique:mahasiswa',
-            'id_jurusan' => 'required',
-            'tahun_masuk' => 'required',
-            'kelas'=> 'required',
-            'jenis_kelamin'=> 'required',
-=======
     //     $request->validate([
     //         'name_mhs'   => 'required',
     //         'npm_mhs'   => 'required|unique:mahasiswa',
@@ -58,7 +49,6 @@ use Illuminate\Http\Request;
     //         'tahun_masuk' => 'required',
     //         'kelas'=> 'required',
     //         'jenis_kelamin'=> 'required',
->>>>>>> 778ce90c258e555280254a63046e18d0f1dd9d01
 
     //     ]);
 

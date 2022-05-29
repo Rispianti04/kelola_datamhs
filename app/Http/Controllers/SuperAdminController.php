@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models;
+use App\Models\penilaian;
 use App\Models\Mahasiswa;
 use App\Models\Jurusan;
 
@@ -9,7 +11,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\SuperAdmin;
-use App\Models\Penilaian;
+
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
@@ -73,6 +75,7 @@ class SuperAdminController extends Controller
                 ->update([
                     'jml_calon_mhs_aktif_reguler' => DB::raw('jml_calon_mhs_aktif_reguler+1'),
                     'jml_calon_mhs_baru_reguler' => DB::raw('jml_calon_mhs_baru_reguler+1'),
+                    'jml_calon_mhs_seleksi' => DB::raw('jml_calon_mhs_seleksi+1')
                 ]);
             }else
             {
@@ -88,6 +91,7 @@ class SuperAdminController extends Controller
                     ->update([
                         'jml_calon_mhs_aktif_transfer' => DB::raw('jml_calon_mhs_aktif_transfer+1'),
                         'jml_calon_mhs_baru_transfer' => DB::raw('jml_calon_mhs_baru_transfer+1'),
+                        'jml_calon_mhs_seleksi' => DB::raw('jml_calon_mhs_seleksi+1')
                     ]);
                 }else
                 {
@@ -126,9 +130,48 @@ class SuperAdminController extends Controller
 
     public function delete($id)
     {
+        $mahasiswa = DB::table('mahasiswa')->select('id_penilaian')->where('id', $id)->first();
+        $idPen = $mahasiswa->id_penilaian;
+        $penilaian = DB::table('seleksi_mahasiswa')->select('tahun_akademik')->where('id_penilaian', $idPen)->first();
+        $request = DB::table('mahasiswa')->select('kelas')->where('id', $id)->first();
+        $date = Carbon::now()->format('Y');
+        $thn = $penilaian->tahun_akademik;
+        $tahun = explode("/", $thn);
+        if ($request->kelas == 'reg') {
+            if($tahun[0]== $date )
+            {
+                Penilaian::where('id_penilaian', $idPen)
+                ->update([
+                    'jml_calon_mhs_aktif_reguler' => DB::raw('jml_calon_mhs_aktif_reguler-1'),
+                    'jml_calon_mhs_baru_reguler' => DB::raw('jml_calon_mhs_baru_reguler-1'),
+                    'jml_calon_mhs_seleksi' => DB::raw('jml_calon_mhs_seleksi-1')
+                ]);
+            }else
+            {
+                Penilaian::where('id_penilaian', $idPen)
+                ->update([
+                    'jml_calon_mhs_aktif_reguler' => DB::raw('jml_calon_mhs_aktif_reguler-1'),
+                ]);
+            }   
+        } else {
+                if($tahun[0] == $date )
+                {
+                    Penilaian::where('id_penilaian', $idPen)
+                    ->update([
+                        'jml_calon_mhs_aktif_transfer' => DB::raw('jml_calon_mhs_aktif_transfer-1'),
+                        'jml_calon_mhs_baru_transfer' => DB::raw('jml_calon_mhs_baru_transfer-1'),
+                        'jml_calon_mhs_seleksi' => DB::raw('jml_calon_mhs_seleksi-1')
+                    ]);
+                }else
+                {
+                    Penilaian::where('id_penilaian', $idPen)
+                    ->update([
+                        'jml_calon_mhs_aktif_transfer' => DB::raw('jml_calon_mhs_aktif_transfer-1'),
+                    ]);
+                }   
+        }
         $admin = Mahasiswa::find($id);
         $admin->delete();
-
         return redirect()->route('SuperAdmin/kelola_mhs_asli')->with('success', 'Data berhasil dihapus');
     }
     public function nilai()
@@ -142,7 +185,6 @@ class SuperAdminController extends Controller
             'daya_tampung'   => 'required',
             'tahun_akademik'   => 'required|unique:seleksi_mahasiswa',
             'jml_calon_mhs_pendaftar'   => 'required',
-            'jml_calon_mhs_seleksi'   => 'required',
         ]);
         // $mahasiswa = Mahasiswa::where('tahun_masuk', $request->tahun_masuk)->get();
 
@@ -151,7 +193,7 @@ class SuperAdminController extends Controller
                 'id_penilaian' => $request->id_penilaian,
                 'tahun_akademik' => $request->tahun_akademik,
                 'jml_calon_mhs_pendaftar' => $request->jml_calon_mhs_pendaftar,
-                'jml_calon_mhs_seleksi' => $request->jml_calon_mhs_seleksi,
+                'jml_calon_mhs_seleksi' => '0',
                 'jml_calon_mhs_baru_reguler' => '0',
                 'jml_calon_mhs_baru_transfer' => '0',
                 'jml_calon_mhs_aktif_reguler' => '0',

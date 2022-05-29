@@ -37,15 +37,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="jml_calon_mhs_seleksi">Jumlah Mahasiswa Seleksi</label>
-                        <input id="jml_calon_mhs_seleksi" name="jml_calon_mhs_seleksi" type="number"
-                            class="@error('jml_calon_mhs_seleksi') is-invalid @enderror form-control" placeholder="Jumlah Mahasiswa Seleksi"
-                            value="{{ old('jml_calon_mhs_seleksi') }}">
-                        @error('jml_calon_mhs_seleksi')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="Submit" class="btn btn-primary">Simpan</button>

@@ -95,7 +95,13 @@
     });
 
 </script>
-
+<script>
+    
+    $("[name='dropdown']").on("change", function (e) {
+        var valueSelected = this.value;
+        window.location.href = "{{ route('SuperAdmin/laporan/mahasiswa') }}";       
+     });
+</script>
 
 <script type="text/javascript">
     @if(count($errors) > 0)
