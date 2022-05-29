@@ -8,6 +8,7 @@ use App\Models\Mahasiswa;
 use App\Models\Jurusan;
 use App\Models\Laporan;
 use PDF;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -39,7 +40,8 @@ class LaporanController extends Controller
     public function cetak_pdf()
     {
         $mahasiswa = Mahasiswa::all();
-        $pdf = PDF::loadview('superadmin/laporan/pdf_mahasiswa', compact('mahasiswa'));
+        $pdf = PDF::loadview('superadmin/laporan/pdfmhs', ['mahasiswa' => $mahasiswa]);
         return $pdf->download('laporan-mahasiswa.pdf');
+   
     }
 }
