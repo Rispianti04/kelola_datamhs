@@ -42,6 +42,7 @@ class MahasiswaController extends Controller
     }
     public function store(Request $request)
     {
+        return $request;
         $penilaian = DB::table('seleksi_mahasiswa2')->select('tahun_akademik')->where('id_penilaian', $request->id_penilaian)->first();
         $date = Carbon::now()->format('Y');
         $request->validate([
@@ -134,21 +135,17 @@ class MahasiswaController extends Controller
     {
         
         $request->validate([
-            'prodi'   => 'required',
             'tahun_akademik'   => 'required|unique:seleksi_mahasiswa2',
-            'jml_calon_mhs_pendaftar'   => 'required',
-            'jml_calon_mhs_seleksi'   => 'required',
         ]);
        
         // $mahasiswa = Mahasiswa::where('tahun_masuk', $request->tahun_masuk)->get();
 
         if ($request->daya_tampung >= $request->jml_calon_mhs_pendaftar) {
             DB::table('seleksi_mahasiswa2')->insert([
-                'id_penilaian' => $request->id_penilaian,
                 'tahun_akademik' => $request->tahun_akademik,
-                'jml_mhs_asing_aktif'=>$request->jml_mhs_asing_aktif,
-                'jml_mhs_asing_full'=>$request->jml_mhs_asing_full,
-                'jml_mhs_asing_part'=>$request->jml_mhs_asing_part,
+                'jml_mhs_asing_aktif'=>'0',
+                'jml_mhs_asing_full'=>'0',
+                'jml_mhs_asing_part'=>'',
             ]);
             return redirect()->route('Mahasiswa/nilai2')->with('success', 'Data berhasil ditambahkan');
         }

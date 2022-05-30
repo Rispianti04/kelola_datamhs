@@ -1,4 +1,4 @@
-<form action="{{ url('store') }}" method="POST">
+<form action="{{ route('Mahasiswa/store') }}" method="POST">
     @csrf
     <div class="modal" tabindex="-1" role="dialog" id="Create">
         <div class="modal-dialog" role="document">

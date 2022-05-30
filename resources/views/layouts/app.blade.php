@@ -99,7 +99,12 @@
     
     $("[name='dropdown']").on("change", function (e) {
         var valueSelected = this.value;
-        window.location.href = "{{ route('SuperAdmin/laporan/mahasiswa') }}";       
+        if (valueSelected === '1') {
+            window.location.href = "{{ route('SuperAdmin/laporan/mahasiswa') }}"; 
+        } else if (valueSelected == '2') {
+            window.location.href = "{{ route('SuperAdmin/laporan/mhsasing') }}";
+            
+        }     
      });
 </script>
 

@@ -7,8 +7,10 @@ use App\Models\penilaian;
 use App\Models\Mahasiswa;
 use App\Models\Jurusan;
 use App\Models\Laporan;
+use App\Models\penilaian2;
 use PDF;
 use Dompdf\Dompdf;
+use App\Models\Mhsasing;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -28,20 +30,28 @@ class LaporanController extends Controller
         $penilaian = Penilaian::all();
         $jurusan = Jurusan::all();
         $mahasiswa = Mahasiswa::all();
-        return view('superadmin/laporan/mahasiswa', compact('penilaian', 'jurusan', 'mahasiswa'));
+        $totalmhs = Mahasiswa::count();
+        return view('superadmin/laporan/mahasiswa', compact('penilaian', 'jurusan', 'mahasiswa', 'totalmhs'));
     }
     public function laporan_mahasiswa()
     {
         $penilaian = Penilaian::all();
         $jurusan = Jurusan::all();
         $mahasiswa = Mahasiswa::all();  
-        return view('superadmin/laporan/index', compact('mahasiswa', 'jurusan', 'penilaian'));
+        $totalmhs = Mahasiswa::count();
+        return view('superadmin/laporan/index', compact('mahasiswa', 'jurusan', 'penilaian',));
     }
     public function cetak_pdf()
     {
+        $totalmhs = Mahasiswa::count();
         $mahasiswa = Mahasiswa::all();
-        $pdf = PDF::loadview('superadmin/laporan/pdfmhs', ['mahasiswa' => $mahasiswa]);
+        $pdf = PDF::loadview('superadmin/laporan/pdfmhs', ['mahasiswa' => $mahasiswa, 'totalmhs' => $totalmhs]);
         return $pdf->download('laporan-mahasiswa.pdf');
    
+    }
+    public function mhsasing()
+    {
+        $mahasiswa = Mhsasing::all();
+        return view('superadmin/laporan/mhsasing', compact('mahasiswa'));
     }
 }

@@ -33,6 +33,7 @@
                                 <div class="form-group">
                                     <label>Pilih Laporan</label>
                                     <select name="dropdown" class="form-control">
+                                        <option >--Pilih--</option>
                                         <option value="1">Laporan Mahasiswa</option>
                                         <option value="2">Laporan Mahasiswa Asing</option>
                                         <option value="3">option 3</option>

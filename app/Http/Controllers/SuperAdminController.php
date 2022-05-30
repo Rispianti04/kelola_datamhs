@@ -48,7 +48,6 @@ class SuperAdminController extends Controller
         $penilaian = DB::table('seleksi_mahasiswa')->select('tahun_akademik')->where('id_penilaian', $request->id_penilaian)->first();
         $date = Carbon::now()->format('Y');
         $thn = $penilaian->tahun_akademik;
-        $tahun = explode("/", $thn);
 
         $request->validate([
             'name_mhs'   => 'required',
@@ -69,7 +68,7 @@ class SuperAdminController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
         ]);
         if ($request->kelas == 'reg') {
-            if($tahun[0]== $date )
+            if($thn== $date )
             {
                 Penilaian::where('id_penilaian', $request->id_penilaian)
                 ->update([
@@ -85,7 +84,7 @@ class SuperAdminController extends Controller
                 ]);
             }   
         } else {
-                if($tahun[0] == $date )
+                if($thn == $date )
                 {
                     Penilaian::where('id_penilaian', $request->id_penilaian)
                     ->update([
@@ -138,7 +137,7 @@ class SuperAdminController extends Controller
         $thn = $penilaian->tahun_akademik;
         $tahun = explode("/", $thn);
         if ($request->kelas == 'reg') {
-            if($tahun[0]== $date )
+            if($tahun== $date )
             {
                 Penilaian::where('id_penilaian', $idPen)
                 ->update([
@@ -154,7 +153,7 @@ class SuperAdminController extends Controller
                 ]);
             }   
         } else {
-                if($tahun[0] == $date )
+                if($tahun == $date )
                 {
                     Penilaian::where('id_penilaian', $idPen)
                     ->update([
@@ -177,7 +176,15 @@ class SuperAdminController extends Controller
     public function nilai()
     {
         $penilaian = Penilaian::all();
-        return view('superadmin.penilaian.index', compact('penilaian'));
+        $pendaftar = DB::table('seleksi_mahasiswa')
+                ->avg('jml_calon_mhs_pendaftar');
+        $jmlseleksi = DB::table('seleksi_mahasiswa')->avg('jml_calon_mhs_seleksi');
+        $jmlaktif = DB::table('seleksi_mahasiswa')->avg('jml_calon_mhs_aktif_reguler');
+        $jmlaktif_transfer = DB::table('seleksi_mahasiswa')->avg('jml_calon_mhs_aktif_transfer');
+        $jmlbaru = DB::table('seleksi_mahasiswa')->avg('jml_calon_mhs_baru_reguler');
+        $jmlbaru_transfer = DB::table('seleksi_mahasiswa')->avg('jml_calon_mhs_baru_transfer');
+        $jmlmhsaktif = $jmlaktif + $jmlaktif_transfer;
+        return view('superadmin.penilaian.index', compact('penilaian', 'pendaftar', 'jmlseleksi', 'jmlmhsaktif', 'jmlbaru', 'jmlbaru_transfer'));
     }
     public function store_nilai(Request $request)
     {

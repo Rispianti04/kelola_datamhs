@@ -74,6 +74,16 @@
                                         @endforeach
 
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Jumlah</th>
+                                            <th class="text-center">{{ $pendaftar < 1 ? '0' : $pendaftar }}</th>
+                                            <th class="text-center">{{ $jmlseleksi  < 1 ? '0' :$jmlseleksi  }}</th>
+                                            <th class="text-center">{{ $jmlbaru < 1 ? '0' : $jmlbaru }}</th>
+                                            <th class="text-center">{{ $jmlbaru_transfer  < 1 ? '0' : $jmlbaru_transfer }}</th>
+                                            <th colspan="2" class="text-center">{{ $jmlmhsaktif  < 1 ? '0' : $jmlmhsaktif    }}</th>
+                                            </tr>
+                                    </tfoot>
 
                                 </table>
                             </div>

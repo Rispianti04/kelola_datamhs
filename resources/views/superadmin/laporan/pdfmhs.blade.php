@@ -39,8 +39,13 @@
                 <td>{{ $mhs->jenis_kelamin  == 'L' ? 'Laki-Laki': 'Perempuan'}}</td>
             </tr>
             @endforeach
-
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6" >Total Mahasiswa</th>
+                <th>{{ $totalmhs }}</th>
+            </tr>
+        </tfoot>
 	</table>
  
 </body>

@@ -46,13 +46,14 @@ Route::post('/store_nilai', [SuperAdminController::class, 'store_nilai'])->name(
 Route::get('/laporan', [LaporanController::class, 'laporan'])->name('Laporan/laporan');
 Route::get('/Laporan/Mahasiswa', [LaporanController::class, 'mahasiswa'])->name('SuperAdmin/laporan/mahasiswa');
 Route::get('/Laporan/Cetak_PDF', [LaporanController::class, 'cetak_pdf'])->name('Laporan/cetak_pdf');
+Route::get('/Laporan/Mahasiswa_Asing', [LaporanController::class, 'mhsasing'])->name('SuperAdmin/laporan/mhsasing');
 
 //mhs asing
 Route::get('/kelola_mhs_asing', [MahasiswaController::class, 'kelola_mhs_asing'])->name('Mahasiswa/index');
 Route::get('/add_mhs_asing', [MahasiswaController::class, 'add_mhs_asing'])->name('Mahasiswa/create');
 Route::put('/update/{id}', [MahasiswaController::class, 'update'])->name('Mahasiswa/update');
 Route::get('/edit/{id}', [MahasiswaController::class, 'edit'])->name('Mahasiswa/edit');
-Route::post('/store', [MahasiswaController::class, 'store'])->name('Mahasiswa/store');
+Route::post('/store', [MahasiswaController::class, 'store_asing'])->name('Mahasiswa/store');
 Route::delete('Mahasiswa/delete/{id}', [MahasiswaController::class, 'delete'])->name('Mahasiswa/delete');
 Route::get('/nilai2', [MahasiswaController::class, 'nilai2'])->name('Mahasiswa/nilai2');
 Route::post('/store_nilai2', [MahasiswaController::class, 'store_nilai2'])->name('Mahasiswa/store');

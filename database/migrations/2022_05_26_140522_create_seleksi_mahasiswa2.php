@@ -19,7 +19,6 @@ class CreateSeleksiMahasiswa2 extends Migration
             $table->string('jml_mhs_asing_aktif');
             $table->string('jml_mhs_asing_full');
             $table->string('jml_mhs_asing_part');
-            $table->string('prodi');
             $table->timestamps();
         });
     }
